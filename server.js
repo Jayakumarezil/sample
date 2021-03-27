@@ -9,6 +9,7 @@ const expresslayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const router = require('./routes/index')
 const authorRouter = require('./routes/authors')
+const bookRouter = require('./routes/books')
 
 
 
@@ -17,7 +18,7 @@ app.set("views" + __dirname+'/view')
 app.set("layout", 'layouts/layout')
 app.use(expresslayouts)
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ linit : '10mb' , extented :false }))
+app.use(bodyParser.urlencoded({ limit : '10mb' , extented :false }))
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/sample',{useNewUrlParser:true})
 
@@ -27,4 +28,7 @@ db.on("open", ()=> console.log("connectedd---"))
 
 app.use('/',router)
 app.use('/authors',authorRouter)
+app.use('/books',bookRouter)
+
+
 app.listen(process.env.PORT || 3000)
