@@ -8,7 +8,7 @@ books = await Book.find().sort({createdAt :'desc' }).limit(10).exec()
     }catch(err){
         books=[]
     }
-    res.render("./layouts/index",{books:booksS})
+    res.render("./layouts/index",{books:books})
 })
 
 module.exports = router
